@@ -34,6 +34,10 @@ $"move={moveAction != null}");
     {
         spriteRenderer.flipX = moveInput > 0f;
     }
+    if (jumpAction.WasPressedThisFrame())
+    {
+       jumpRequested = true;
+    }
     Debug.Log($"Update: moveInput={moveInput}");
   }
   void FixedUpdate()
@@ -41,6 +45,11 @@ $"move={moveAction != null}");
   isGrounded = Physics2D.OverlapCircle(
 groundCheck.position, groundCheckRadius, groundLayer) != null;
 rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+if (jumpRequested && isGrounded)
+{
+rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);
+}
+jumpRequested = false;
 }
 void OnDrawGizmosSelected()
 {
