@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 577685481}
   - component: {fileID: 577685480}
   - component: {fileID: 577685479}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,6 +767,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &587837886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587837887}
+  m_Layer: 7
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &587837887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587837886}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 3.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2065768684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119498427
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +855,6 @@ GameObject:
   - component: {fileID: 1667717195}
   - component: {fileID: 1667717194}
   - component: {fileID: 1667717193}
-  - component: {fileID: 1667717197}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -950,19 +980,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1667717197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667717192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9936db69a4c42148db14d2217955ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WalkerController
-  moveSpeed: 6
 --- !u!1 &2065768680
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +993,7 @@ GameObject:
   - component: {fileID: 2065768682}
   - component: {fileID: 2065768681}
   - component: {fileID: 2065768685}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1128,7 +1145,8 @@ Transform:
   m_LocalPosition: {x: 2, y: 3.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 587837887}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2065768685
@@ -1144,6 +1162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WalkerController
   moveSpeed: 6
+  jumpVelocity: 15
+  groundCheck: {fileID: 587837887}
+  groundCheckRadius: 0.15
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
