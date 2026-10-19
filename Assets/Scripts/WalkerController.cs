@@ -12,6 +12,7 @@ public class WalkerController  : MonoBehaviour
 [SerializeField] private LayerMask groundLayer;
 private InputAction jumpAction;
 private bool jumpRequested;
+private bool jumpCutRequested;
 private bool isGrounded;
   private Rigidbody2D rb;
   private SpriteRenderer spriteRenderer;
@@ -38,6 +39,10 @@ $"move={moveAction != null}");
     {
        jumpRequested = true;
     }
+           if (jumpAction.WasReleasedThisFrame())
+        {
+          jumpCutRequested = true;
+        }
     Debug.Log($"Update: moveInput={moveInput}");
   }
   void FixedUpdate()
@@ -50,6 +55,12 @@ if (jumpRequested && isGrounded)
 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);
 }
 jumpRequested = false;
+if (jumpCutRequested && rb.linearVelocity.y > 0f)
+{
+rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+}
+jumpRequested = false;
+jumpCutRequested = false;
 }
 void OnDrawGizmosSelected()
 {
